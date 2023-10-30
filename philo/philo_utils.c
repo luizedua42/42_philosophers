@@ -1,25 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:19:10 by luizedua          #+#    #+#             */
-/*   Updated: 2023/10/30 17:11:15 by luizedua         ###   ########.fr       */
+/*   Created: 2023/10/29 16:41:58 by luizedua          #+#    #+#             */
+/*   Updated: 2023/10/30 15:37:40 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+long	ft_atol(const char *nptr)
 {
-	t_philo	*philo;
+	long	res;
+	long	sign;
 
-	philo = calloc(1, sizeof(t_philo));
-	if (argc < 4 || argc > 6)
-		return (EXIT_FAILURE);
-	init_philo(philo, argv);
-	free(philo);
-	return (EXIT_SUCCESS);
+	res = 0;
+	sign = 1;
+	while (*nptr == 32 || (*nptr >= 9 && *nptr <= 13))
+		nptr++;
+	if (*nptr == '-')
+		sign *= -1;
+	if (*nptr == '-' || *nptr == '+')
+		nptr++;
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		res = res * 10 + *nptr - '0';
+		nptr++;
+	}
+	return (res * sign);
+}
+
+bool	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (true);
+	return (false);
 }
