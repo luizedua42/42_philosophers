@@ -1,5 +1,5 @@
 NAME := philo
-CFLAGS := -Wextra -Wall -Werror
+CFLAGS := -Wextra -Wall -Werror -pthread
 CFLAGS += -g3
 JOBS := -j50
 MAKEFLAGS += --no-print-directory
@@ -14,7 +14,7 @@ LIBS :=
 
 OBJ_DIR := build
 
-SRCS := philo.c philo_utils.c input_validation.c inits.c
+SRCS := philo.c philo_utils.c input_validation.c inits.c thread_creation.c
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:04:30 by luizedua          #+#    #+#             */
-/*   Updated: 2023/10/30 17:11:02 by luizedua         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:11:40 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ time_t	overflow_validation(long nbr)
 
 bool	philo_validation(t_philo *philo)
 {
-	if (philo->philos > 200 || philo->philos < 1)
-		return (false);
 	if (philo->n_of_times < 0)
 		return (false);
 	return (true);

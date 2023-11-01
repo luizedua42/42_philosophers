@@ -6,13 +6,13 @@
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:08:39 by luizedua          #+#    #+#             */
-/*   Updated: 2023/10/30 17:33:53 by luizedua         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:42:07 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	init_philo(t_philo *philo, char **av)
+bool	init_philo(t_philo *philo, char **av, long philos)
 {
 	size_t	i;
 
@@ -23,6 +23,7 @@ bool	init_philo(t_philo *philo, char **av)
 			return (false);
 		i++;
 	}
+	philo->philos = philos;
 	philo->time_to_die = overflow_validation(ft_atol(av[2]));
 	philo->time_to_eat = overflow_validation(ft_atol(av[3]));
 	philo->time_to_sleep = overflow_validation(ft_atol(av[4]));
