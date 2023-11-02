@@ -6,13 +6,11 @@
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:19:10 by luizedua          #+#    #+#             */
-/*   Updated: 2023/11/01 18:01:13 by luizedua         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:06:37 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	print_philos(t_philo *philo, long i);
 
 int	main(int argc, char **argv)
 {
@@ -37,10 +35,10 @@ int	main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-void	print_philos(t_philo *philo, long i)
+void	print_philos(t_philo *philo)
 {
-	printf("philo [%ld]die: %ld\n", i, philo->time_to_die);
-	printf("philo [%ld]eat: %ld\n", i, philo->time_to_eat);
-	printf("philo [%ld]sleep: %ld\n", i, philo->time_to_sleep);
-	printf("philo [%ld]times: %ld\n", i, philo->n_of_times);
+	printf("philo [%ld] die: %ld\n", philo->philos, philo->time_to_die);
+	printf("philo [%ld] eat: %ld\n", philo->philos, philo->time_to_eat);
+	printf("philo [%ld] sleep: %ld\n", philo->philos,philo->time_to_sleep);
+	printf("philo [%ld] times: %ld\n", philo->philos,philo->n_of_times);
 }
