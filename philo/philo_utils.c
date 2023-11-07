@@ -6,7 +6,7 @@
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:41:58 by luizedua          #+#    #+#             */
-/*   Updated: 2023/10/30 15:37:40 by luizedua         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:21:38 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,12 @@ bool	ft_isdigit(int c)
 	if (c >= '0' && c <= '9')
 		return (true);
 	return (false);
+}
+
+time_t	ms_clock(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }

@@ -1,6 +1,6 @@
 NAME := philo
-CFLAGS := -Wextra -Wall -Werror
-CFLAGS += -g3
+CFLAGS := -Wextra -Wall -Werror -pthread
+CFLAGS += -O3 -g3
 JOBS := -j50
 MAKEFLAGS += --no-print-directory
 YELLOW := $(shell tput setaf 3)
@@ -14,7 +14,8 @@ LIBS :=
 
 OBJ_DIR := build
 
-SRCS := philo.c philo_utils.c input_validation.c inits.c
+SRCS := philo.c philo_utils.c input_validation.c inits.c prints.c routines.c
+SRCS += king_rat.c
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 all: $(NAME)
