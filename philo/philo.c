@@ -5,40 +5,93 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:19:10 by luizedua          #+#    #+#             */
-/*   Updated: 2023/11/02 14:06:37 by luizedua         ###   ########.fr       */
+/*   Created: 2023/11/07 11:28:48 by luizedua          #+#    #+#             */
+/*   Updated: 2023/11/07 14:48:52 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+static void	*dinner(void *philo);
+static void	mutex_creation(t_philo *philo, long nop);
+static bool	create_threads(t_philo *philos, long nop);
+
 int	main(int argc, char **argv)
 {
-	t_philo	philo[200];
-	long	i;
-	long	n_of_philos;
+	t_philo philos[200];
+	long	nop;
 
-	i = -1;
-	if (argc < 5 || argc > 6)
+	if (argc < 4 || argc > 6)
 		return (EXIT_FAILURE);
-	if (input_validation(argv[1]) == false)
+	if(input_validation(argv[1]) == false || ft_atol(argv[1]) > 200)
 		return (EXIT_FAILURE);
-	n_of_philos = ft_atol(argv[1]);
-	if (n_of_philos > 200 || n_of_philos < 1)
-		return (EXIT_FAILURE);
-	while (++i < n_of_philos)
-	{
-		if (!init_philo(&philo[i], argv, i) || !philo_validation(&philo[i]))
-			return (EXIT_FAILURE);
-	}
-	thread_creation(philo, n_of_philos);
+	nop = ft_atol(argv[1]);
+	if(!init_philo(philos, argv, nop) || !philo_validation(philos, nop))
+		return (false);
+	mutex_creation(philos, nop);
+	create_threads(philos, nop);
 	return (EXIT_SUCCESS);
 }
 
-void	print_philos(t_philo *philo)
+static void	mutex_creation(t_philo *philo, long nop)
 {
-	printf("philo [%ld] die: %ld\n", philo->philos, philo->time_to_die);
-	printf("philo [%ld] eat: %ld\n", philo->philos, philo->time_to_eat);
-	printf("philo [%ld] sleep: %ld\n", philo->philos,philo->time_to_sleep);
-	printf("philo [%ld] times: %ld\n", philo->philos,philo->n_of_times);
+	long			i;
+	pthread_mutex_t	*print;
+	pthread_mutex_t	*fork;
+
+	i = -1;
+	print = malloc(sizeof(pthread_mutex_t));
+	philo->rules->print = print;
+	fork = malloc(nop * sizeof(pthread_mutex_t));
+	while(++i < nop)
+	{
+		philo[i].fork1 = &fork[i];
+		philo[i].fork2 = &fork[(i + 1) % nop];
+	}
+}
+
+static bool	create_threads(t_philo *philos, long nop)
+{
+	long		i;
+	pthread_t	threads[200];
+
+	i = -1;
+	while (++i < nop)
+		pthread_create(&threads[i], NULL, dinner, &philos[i]);
+	i = -1;
+	while (++i < nop)
+		pthread_join(threads[i], NULL);
+	return (true);
+}
+
+static void	*dinner(void *philo)
+{
+	t_philo *philos;
+
+	philos = philo;
+	philos->start_time = ms_clock();
+	philos->last_meal = philos->start_time;
+	if (philos->id % 2)
+		usleep(1000);
+	while (1)
+	{
+		if(king_rat(philos))
+		{
+			print_routine(philos, "%ld %d has died");
+			return(NULL);
+		}
+		goto_bed(philos);
+		if(king_rat(philos))
+		{
+			print_routine(philos, "%ld %d has died");
+			return(NULL);
+		}
+		go_eat(philos);
+		if(king_rat(philos))
+		{
+			print_routine(philos, "%ld %d has died");
+			return(NULL);
+		}
+		go_think(philos);
+	}
 }

@@ -14,7 +14,8 @@ LIBS :=
 
 OBJ_DIR := build
 
-SRCS := philo.c philo_utils.c input_validation.c inits.c thread_creation.c
+SRCS := philo.c philo_utils.c input_validation.c inits.c prints.c routines.c
+SRCS += king_rat.c
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 all: $(NAME)
