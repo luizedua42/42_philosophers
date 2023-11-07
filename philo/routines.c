@@ -6,7 +6,7 @@
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:43:41 by luizedua          #+#    #+#             */
-/*   Updated: 2023/11/07 14:42:10 by luizedua         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:21:23 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	go_eat(t_philo *philos)
 	print_routine(philos, "%ld %d is eating\n");
 	usleep(philos->rules->famine);
 	forkdrop(philos);
-	
 }
 
 void	go_think(t_philo *philos)

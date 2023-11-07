@@ -6,7 +6,7 @@
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:19:12 by luizedua          #+#    #+#             */
-/*   Updated: 2023/11/07 14:44:30 by luizedua         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:22:54 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 # include <sys/time.h>
 
 //Structss
-typedef struct s_rules 
+typedef struct s_rules
 {
-	time_t	death;
-	time_t	famine;
-	time_t	sleep;
-	pthread_mutex_t *print;
+	time_t			death;
+	time_t			famine;
+	time_t			sleep;
+	pthread_mutex_t	*print;
 }	t_rules;
 
 typedef struct s_philo
@@ -49,7 +49,7 @@ bool				input_validation(char *input);
 time_t				overflow_validation(long nbr);
 bool				philo_validation(t_philo *philo, long n_of_philos);
 time_t				ms_clock(void);
-void				print_routine(t_philo *philo, char *str);
+void				*print_routine(t_philo *philo, char *str);
 
 // Routine
 void				goto_bed(t_philo *philos);

@@ -6,7 +6,7 @@
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:04:30 by luizedua          #+#    #+#             */
-/*   Updated: 2023/11/07 13:15:39 by luizedua         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:22:14 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	philo_validation(t_philo *philo, long n_of_philos)
 	long	i;
 
 	i = 0;
-	while(++i < n_of_philos)
+	while (++i < n_of_philos)
 		if (&philo[i].n_of_meals < 0)
 			return (false);
 	return (true);
