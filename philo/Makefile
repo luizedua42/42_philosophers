@@ -1,6 +1,6 @@
 NAME := philo
 CFLAGS := -Wextra -Wall -Werror -pthread
-CFLAGS += -g3
+CFLAGS += -O3 -g3
 JOBS := -j50
 MAKEFLAGS += --no-print-directory
 YELLOW := $(shell tput setaf 3)

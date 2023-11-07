@@ -6,7 +6,7 @@
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 11:25:36 by luizedua          #+#    #+#             */
-/*   Updated: 2023/11/07 16:23:38 by luizedua         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:38:23 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ bool	init_philo(t_philo *philo, char **av, long philos)
 		if (input_validation(av[i]) == false)
 			return (false);
 	i = -1;
+	rules.is_alive = true;
 	rules.death = ft_atol(av[2]);
 	rules.famine = overflow_validation(ft_atol(av[3]));
 	rules.sleep = overflow_validation(ft_atol(av[4]));

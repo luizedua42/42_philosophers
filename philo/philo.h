@@ -6,7 +6,7 @@
 /*   By: luizedua <luizedua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:19:12 by luizedua          #+#    #+#             */
-/*   Updated: 2023/11/07 16:22:54 by luizedua         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:42:12 by luizedua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,17 @@
 # include <stdbool.h>
 # include <limits.h>
 # include <sys/time.h>
+# include <errno.h>
 
 //Structss
 typedef struct s_rules
 {
+	bool			is_alive;
 	time_t			death;
 	time_t			famine;
 	time_t			sleep;
 	pthread_mutex_t	*print;
+	pthread_mutex_t	*m_death;
 }	t_rules;
 
 typedef struct s_philo
@@ -53,9 +56,9 @@ void				*print_routine(t_philo *philo, char *str);
 
 // Routine
 void				goto_bed(t_philo *philos);
-void				go_eat(t_philo *philos);
+bool				go_eat(t_philo *philos);
 void				go_think(t_philo *philos);
-void				forklift(t_philo *philos);
+bool				forklift(t_philo *philos);
 void				forkdrop(t_philo *philos);
 bool				king_rat(t_philo *philos);
 
